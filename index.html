@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCRUM в образовании: Глоссарий и практическое руководство</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .tab:hover, .tab.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Content Sections */
+        .section {
+            display: none;
+            padding: 3rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body ul {
+            padding-left: 1.2rem;
+        }
+        
+        .card-body li {
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        /* Visual Diagram */
+        .scrum-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .diagram-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .diagram-item i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tool-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+        
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>SCRUM в образовании</span>
+            </div>
+            <div class="hero">
+                <h1>Гибкая методология SCRUM в образовательном процессе</h1>
+                <p>Интерактивный глоссарий и практическое руководство для преподавателей, методистов и администраторов образовательных учреждений</p>
+                <a href="#what-is-scrum" class="cta-button">Начать изучение</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs" id="navTabs">
+            <div class="tab active" data-target="what-is-scrum">Что такое SCRUM?</div>
+            <div class="tab" data-target="roles">Роли в SCRUM</div>
+            <div class="tab" data-target="artifacts">Артефакты</div>
+            <div class="tab" data-target="events">События</div>
+            <div class="tab" data-target="benefits">Преимущества</div>
+            <div class="tab" data-target="tools">Инструменты</div>
+        </div>
+
+        <!-- Section: Что такое SCRUM? -->
+        <section id="what-is-scrum" class="section active">
+            <h2 class="section-title">Что такое SCRUM в образовании?</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb"></i> Определение
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Scrum</strong> — фреймворк гибкой (Agile) методологии для управления проектами через итеративную и инкрементальную работу.</p>
+                        <p><strong>В образовании:</strong> подход, при котором учебный процесс разбивается на короткие циклы (спринты) с чёткими целями, ролями и регулярной рефлексией.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-question-circle"></i> Почему в образовании?
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Мир меняется быстро, образование должно быть гибким</li>
+                            <li>Повышает вовлеченность и ответственность студентов</li>
+                            <li>Переносит акцент с пассивного обучения на активное проектное взаимодействие</li>
+                            <li>Структурирует учебные задачи и делает процесс прозрачным</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-rocket"></i> Пример учебного спринта
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Длительность:</strong> 3 недели</p>
+                        <p><strong>Цель:</strong> Создать прототип мобильного приложения по теме курса</p>
+                        <p><strong>Этапы:</strong></p>
+                        <ol>
+                            <li>Планирование (определение функций)</li>
+                            <li>Ежедневные/еженедельные стендапы</li>
+                            <li>Разработка и тестирование</li>
+                            <li>Презентация прототипа (Review)</li>
+                            <li>Ретроспектива (улучшение процесса)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Роли -->
+        <section id="roles" class="section">
+            <h2 class="section-title">Ключевые роли в образовательном SCRUM</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user-tie"></i> Преподаватель (Scrum Master)
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Фасилитатор процесса обучения</li>
+                            <li>Помогает устранять препятствия</li>
+                            <li>Следит за соблюдением принципов Scrum</li>
+                            <li>Не руководит, а создаёт условия для самоорганизации</li>
+                            <li>Обеспечивает проведение всех событий Scrum</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-users"></i> Студенты (Команда)
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Самоорганизующаяся учебная группа</li>
+                            <li>Совместно выполняет учебные задачи</li>
+                            <li>Самостоятельно распределяет роли и задачи</li>
+                            <li>Несёт коллективную ответственность за результат</li>
+                            <li>Перекрёстная функциональность (разные навыки в команде)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-bullhorn"></i> Заказчик (Product Owner)
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Определяет цели и приоритеты обучения</li>
+                            <li>Формулирует требования к результату</li>
+                            <li>Принимает работу по итогам спринта</li>
+                            <li><strong>Варианты в образовании:</strong>
+                                <ul>
+                                    <li>Работодатель/представитель отрасли</li>
+                                    <li>Преподаватель курса</li>
+                                    <li>Старшекурсники/выпускники</li>
+                                    <li>Сами студенты (peer-оценка)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Артефакты -->
+        <section id="artifacts" class="section">
+            <h2 class="section-title">Артефакты SCRUM в образовании</h2>
+            <div class="scrum-diagram">
+                <div class="diagram-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Product Backlog</h3>
+                    <p>Список всех учебных задач, тем, проектов на курс. Упорядочен по приоритету. Живой документ, который может меняться.</p>
+                </div>
+                
+                <div class="diagram-item">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Sprint Backlog</h3>
+                    <p>Подмножество задач, выбранных для выполнения в текущем учебном спринте (обычно 2-4 недели). Четкие измеримые цели.</p>
+                </div>
+                
+                <div class="diagram-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Increment</h3>
+                    <p>Осязаемый учебный результат спринта: готовый проект, презентация, исследование, портфолио. Должен быть готов к "продакшену".</p>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <h3 style="padding: 1rem; margin: 0;">Пример учебного Product Backlog</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Приоритет</th>
+                            <th>Учебная задача</th>
+                            <th>Оценка сложности</th>
+                            <th>Критерии завершения</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Подготовить групповую презентацию по теме "Цифровая трансформация"</td>
+                            <td>8 баллов</td>
+                            <td>Презентация 15 мин + ответы на вопросы</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Написать исследовательскую работу по выбранной проблеме</td>
+                            <td>13 баллов</td>
+                            <td>Работа 10-12 страниц, список литературы из 15+ источников</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Разработать прототип сервиса в Figma</td>
+                            <td>20 баллов</td>
+                            <td>Интерактивный прототип с 5+ экранами</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section: События -->
+        <section id="events" class="section">
+            <h2 class="section-title">События (Церемонии) SCRUM</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-check"></i> Sprint Planning
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Планирование спринта</strong></p>
+                        <ul>
+                            <li>Команда совместно планирует, что будет сделано в следующем спринте</li>
+                            <li>Определяет цель спринта (Sprint Goal)</li>
+                            <li>Создает Sprint Backlog</li>
+                            <li>Время: 2-4 часа на 2-недельный спринт</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-comments"></i> Daily Stand-up
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ежедневный/еженедельный стендап</strong></p>
+                        <ul>
+                            <li>Короткие встречи (5-15 мин)</li>
+                            <li>Три ключевых вопроса:
+                                <ol>
+                                    <li>Что сделал с прошлой встречи?</li>
+                                    <li>Что планирую сделать к следующей?</li>
+                                    <li>Какие препятствия мешают?</li>
+                                </ol>
+                            </li>
+                            <li>В образовании: можно проводить 2-3 раза в неделю</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar"></i> Sprint Review
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Обзор спринта</strong></p>
+                        <ul>
+                            <li>Демонстрация результатов спринта</li>
+                            <li>Участвуют команда, Scrum Master и Product Owner</li>
+                            <li>Получение обратной связи</li>
+                            <li>Адаптация Product Backlog при необходимости</li>
+                            <li>Время: 1-2 часа на 2-недельный спринт</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-sync-alt"></i> Sprint Retrospective
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ретроспектива спринта</strong></p>
+                        <ul>
+                            <li>Обсуждение процесса работы</li>
+                            <li>Что прошло хорошо?</li>
+                            <li>Что можно улучшить?</li>
+                            <li>Создание плана улучшений на следующий спринт</li>
+                            <li>Время: 1-1.5 часа на 2-недельный спринт</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Преимущества и сложности -->
+        <section id="benefits" class="section">
+            <h2 class="section-title">Преимущества и сложности внедрения</h2>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--success);">
+                        <i class="fas fa-thumbs-up"></i> Преимущества
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Повышение мотивации</strong> студентов через чёткие цели и автономию</li>
+                            <li><strong>Развитие soft skills:</strong> командная работа, тайм-менеджмент, самоорганизация</li>
+                            <li><strong>Гибкость:</strong> возможность корректировать учебный план по ходу курса</li>
+                            <li><strong>Прозрачность:</strong> все видят прогресс и трудности</li>
+                            <li><strong>Фокус на результате,</strong> а не просто на "прохождении материала"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" style="background-color: var(--accent);">
+                        <i class="fas fa-exclamation-triangle"></i> Сложности и решения
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container" style="box-shadow: none; margin: 0;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Сложность</th>
+                                        <th>Решение</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Сопротивление изменениям</td>
+                                        <td>Постепенное внедрение, обучение принципам Agile</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Оценка индивидуального вклада</td>
+                                        <td>Использование peer-оценки, рефлексивных дневников</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Жёсткие учебные планы</td>
+                                        <td>Внедрение Scrum в рамках отдельных модулей/проектов</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Нехватка времени на стендапы</td>
+                                        <td>Проведение 2-3 раза в неделю вместо ежедневных</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Инструменты -->
+        <section id="tools" class="section">
+            <h2 class="section-title">Инструменты для SCRUM в образовании</h2>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <i class="fab fa-trello"></i>
+                    <h3>Trello</h3>
+                    <p>Визуальные доски с карточками для бэклогов и планирования спринтов</p>
+                </div>
+                
+                <div class="tool-card">
+                    <i class="fas fa-sticky-note"></i>
+                    <h3>Физические доски</h3>
+                    <p>Стикеры и доски для очного взаимодействия, ретроспектив</p>
+                </div>
+                
+                <div class="tool-card">
+                    <i class="fab fa-miro"></i>
+                    <h3>Miro</h3>
+                    <p>Онлайн-доски для совместной работы, планирования и ретроспектив</p>
+                </div>
+                
+                <div class="tool-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Notion</h3>
+                    <p>Комплексное решение для документации, бэклогов и отслеживания прогресса</p>
+                </div>
+                
+                <div class="tool-card">
+                    <i class="fas fa-retweet"></i>
+                    <h3>FunRetro / Retrotool</h3>
+                    <p>Специализированные инструменты для проведения ретроспектив</p>
+                </div>
+                
+                <div class="tool-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Примеры учебных задач</h3>
+                    <p>Подготовка презентаций, разработка прототипов, исследовательские работы, кейс-задачи</p>
+                </div>
+            </div>
+            
+            
+        </section>
+    </div>
+
+    
+
+    <script>
+        // Tab navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const sections = document.querySelectorAll('.section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target section
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if(section.id === targetId) {
+                            section.classList.add('active');
+                        }
+                    });
+                    
+                    // Smooth scroll to top of section
+                    const targetSection = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // CTA button scroll to first section
+            document.querySelector('.cta-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSection = document.querySelector('.section.active');
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Make table rows interactive
+            document.querySelectorAll('tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#e8f4fc';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    if(this.rowIndex % 2 === 0) {
+                        this.style.backgroundColor = '#f8f9fa';
+                    } else {
+                        this.style.backgroundColor = 'white';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
